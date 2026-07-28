@@ -27,23 +27,15 @@ CLI 접속 검증: curl http://localhost:8080
 
 
 ## 3) 수행 체크리스트
-[x] 터미널 기본 조작 및 폴더 구성
-
-[x] 권한 변경 실습
-
-[x] Docker 설치/점검
-
-[x] hello-world 실행
-
-[x] Dockerfile 빌드/실행
-
-[x] 포트 매핑 접속(2회)
-
-[x] 바인드 마운트 반영
-
-[x] 볼륨 영속성
-
-[x] Git 설정 + VSCode GitHub 연동
+- [x] 터미널 기본 조작 및 폴더 구성
+- [x] 권한 변경 실습
+- [x] Docker 설치/점검
+- [x] hello-world 실행
+- [x] Dockerfile 빌드/실행
+- [x] 포트 매핑 접속(2회)
+- [x] 바인드 마운트 반영
+- [x] 볼륨 영속성
+- [x] Git 설정 + VSCode GitHub 연동
 
 ## 4) 수행 로그 및 증거 자료
 
@@ -99,20 +91,26 @@ Status: Downloaded newer image for hello-world:latest
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
 
-#### 3. Docker 환경 구축 및 웹 서버 실행
-Dockerfile을 작성하여 Nginx 기반의 커스텀 이미지를 빌드했습니다.
-컨테이너를 실행하여 브라우저(http://localhost:8080) 및 curl 명령으로 접속을 확인했습니다.
+### 3. Docker 환경 구축 및 웹 서버 실행
+`Dockerfile`을 작성하여 Nginx 기반의 커스텀 이미지를 빌드했습니다.
+컨테이너를 실행하여 브라우저(`http://localhost:8080`) 및 `curl` 명령으로 접속을 확인했습니다.
 
+```bash
 # 프로젝트 구조 생성
-$mkdir site$ touch site/index.html
+$ mkdir site
+$ touch site/index.html
 $ echo '<h1>Hello Codyssey!</h1>' > site/index.html
 $ touch Dockerfile
+```
 
-# Dockerfile 내용
-# FROM nginx:latest
-# COPY ./site/index.html /usr/share/nginx/html/index.html
-# EXPOSE 80
+**Dockerfile 내용:**
+```dockerfile
+FROM nginx:latest
+COPY ./site/index.html /usr/share/nginx/html/index.html
+EXPOSE 80
+```
 
+```bash
 # Docker 이미지 빌드
 $ docker build -t my-web-server .
 [+] Building 1.9s (7/7) FINISHED                                        docker:orbstack
@@ -131,6 +129,7 @@ CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS 
 
 $ curl http://localhost:8080
 <h1>Hello Codyssey!</h1>
+```
 
 #### 4. 볼륨 마운트 적용 및 실시간 반영
 컨테이너를 삭제한 후, 로컬의 소스 코드와 컨테이너 내부를 연결하는 바인드 마운트를 적용했습니다.
