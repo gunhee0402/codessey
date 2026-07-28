@@ -22,6 +22,7 @@ docker run -d -p 8080:80 --name my-web my-web-server
 ### 3. 접속 주소
 3. 접속 주소 및 확인
 접속 URL: http://localhost:8080
+![실행 결과 증거](./image.png)
 
 CLI 접속 검증: curl http://localhost:8080
 
@@ -91,7 +92,7 @@ Status: Downloaded newer image for hello-world:latest
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
 
-### 3. Docker 환경 구축 및 웹 서버 실행
+#### 3. Docker 환경 구축 및 웹 서버 실행
 `Dockerfile`을 작성하여 Nginx 기반의 커스텀 이미지를 빌드했습니다.
 컨테이너를 실행하여 브라우저(`http://localhost:8080`) 및 `curl` 명령으로 접속을 확인했습니다.
 
@@ -135,6 +136,7 @@ $ curl http://localhost:8080
 컨테이너를 삭제한 후, 로컬의 소스 코드와 컨테이너 내부를 연결하는 바인드 마운트를 적용했습니다.
 이를 통해 컨테이너 삭제 후에도 데이터가 유지되며, 이미지 재빌드 없이 소스 수정 사항이 즉시 반영됨을 확인했습니다.
 
+```bash
 # 기존 컨테이너 중지 및 삭제
 $ docker stop my-web
 my-web
