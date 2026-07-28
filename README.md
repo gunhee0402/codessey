@@ -22,9 +22,10 @@ docker run -d -p 8080:80 --name my-web my-web-server
 ### 3. 접속 주소
 3. 접속 주소 및 확인
 접속 URL: http://localhost:8080
-![실행 결과 증거](./image.png)
 
 CLI 접속 검증: curl http://localhost:8080
+
+![실행 결과 증거](./image.png)
 
 
 ## 3) 수행 체크리스트
