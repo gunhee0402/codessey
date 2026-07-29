@@ -41,6 +41,8 @@ codyssey-mission/
 └── site/                       # 바인드 마운트 테스트용 호스트 웹 루트 디렉토리
     ├── index.html              # 바인드 마운트를 통해 컨테이너 내부로 영속 공급되는 HTML
     └── test.txt                # chmod 권한 테스트용 서브 파일
+    
+   ```
 
 ### 파일 및 디렉터리 역할
 * **`codyssey-mission/`**: 프로젝트 루트 디렉터리.
