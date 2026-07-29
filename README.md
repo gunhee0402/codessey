@@ -280,16 +280,19 @@ $ curl http://localhost:8080
 컨테이너를 강제 삭제하더라도 호스트 측 데이터는 완전히 보존됨을 검증하는 로그입니다.
 
 # 컨테이너 삭제
+```bash
 $ docker rm -f my-web
 my-web
+```
 
 # 호스트 디렉터리 파일 및 권한, 내용 유지 상태 스냅샷 확인
+```bash
 $ ls -la ./site/index.html
 -rw-r--r-- 1 jkhlms35873333587 jkhlms35873333587 35 Jul 28 21:35 ./site/index.html
 
 $ cat ./site/index.html
 <h1>Updated Codyssey Volume!</h1>
-
+```
 ---
 
 ## 7. Git / GitHub 버전 관리 및 이력
