@@ -406,12 +406,15 @@ zsh: event not found: </h1>
 * **검증 명령 비교**:
 
 # [전] 실패 사례 (쌍따옴표 및 셸 파싱 간섭)
+```bash
 $ echo "<h1>Hello!</h1>"
 zsh: event not found: </h1>
-
+```
 # [후] 성공 사례 (홑따옴표 사용으로 셸 해석 방지)
+```bash
 $ echo '<h1>Hello!</h1>'
 <h1>Hello!</h1>
+```
 
 #### 3. 조치
 모든 inline HTML 및 특수문자가 포함된 명령어는 홑따옴표(`'...'`)로 감싸서 실행하도록 수정함.
