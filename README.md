@@ -30,15 +30,17 @@
 프로젝트의 전체 구조와 각 파일/디렉터리의 역할입니다.
 
 ### 프로젝트 트리 구조
+
+```text
 codyssey-mission/
-├── Dockerfile          # Nginx 기반의 커스텀 웹 서버 이미지 빌드 명세서
-├── README.md           # 본 과제 수행 보고서 및 트러블슈팅 가이드
-├── screenshots/        # 검증용 캡처 이미지 보관 디렉터리
-│   ├── browser_access_20260728_2130.png  # 브라우저 접속 검증 스크린샷
+├── Dockerfile                  # Nginx 기반의 커스텀 웹 서버 이미지 빌드 명세서
+├── README.md                   # 본 과제 수행 보고서 및 트러블슈팅 가이드
+├── screenshots/                # 검증용 캡처 이미지 보관 디렉토리
+│   ├── browser_access_20260728_2130.png # 브라우저 접속 검증 스크린샷
 │   └── terminal_execution_full.png      # 터미널 작업 전체 스냅샷
-├── site/               # 바인드 마운트 테스트용 호스트 웹 루트 디렉터리
-│   └── index.html      # 바인드 마운트를 통해 컨테이너 내부로 영속 공급되는 HTML
-└── test.txt            # chmod 권한 테스트용 서브 파일
+└── site/                       # 바인드 마운트 테스트용 호스트 웹 루트 디렉토리
+    ├── index.html              # 바인드 마운트를 통해 컨테이너 내부로 영속 공급되는 HTML
+    └── test.txt                # chmod 권한 테스트용 서브 파일
 
 ### 파일 및 디렉터리 역할
 * **`codyssey-mission/`**: 프로젝트 루트 디렉터리.
