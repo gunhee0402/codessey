@@ -205,8 +205,49 @@ Docker 바인드 마운트(-v) 시 호스트 경로는 반드시 절대 경로�
 $docker run --rm --volumes-from my-web -v$(pwd):/backup ubuntu tar cvf /backup/backup.tar /usr/share/nginx/html
 
 ### 8. 트러블슈팅 이력 (시도 가설 및 조치)
-증상: zsh: event not found: </h1> 에러 발생
+### 포트 충돌
 
-가설: Zsh 셸에서 큰따옴표 내의 느낌표(!)를 이전 실행 히스토리 검색 특수문자로 오인함.
+#### 1. 증상
+컨테이너 실행 시 아래와 같이 포트 점유 에러 발생.
+docker: Error response from daemon: driver failed programming external connectivity on endpoint my-web: Bind for 0.0.0.0:8080 failed: port is already allocated.
 
-조치: 작은따옴표(' ')로 감싸서 실행하여 정상 작성 완료 (echo '<h1>...</h1>' > site/index.html).
+#### 2. 진단 및 PID 확인
+`lsof` 명령어를 통해 8080 포트를 점유 중인 프로세스와 PID 확인.
+
+$ lsof -i :8080
+COMMAND   PID              USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+node    45123 jkhlms35873333587   22u  IPv4 0x1234      0t0  TCP *:http-alt (LISTEN)
+
+#### 3. 조치 및 실행 예시
+* **조치 방안 A (프로세스 종료)**:
+  $ kill -9 45123
+* **조치 방안 B (대체 포트 사용)**:
+  $ docker run -d -p 8081:80 --name my-web my-web-server
+  $ curl http://localhost:8081
+
+---
+
+### Zsh Shell Special Character Parsing Error
+
+#### 1. 증상
+Zsh 터미널에서 HTML 태그가 포함된 `curl` 결과를 문자열로 전달할 때 에러 발생.
+zsh: event not found: </h1>
+
+#### 2. 가설 수립 및 검증
+* **가설**: Zsh 셸의 히스토리 확장 기능이 `!` 기호나 특수문자(`</`)를 감지하여 구문 에러를 일으킴.
+* **검증 명령 비교**:
+
+#### [전] 실패 사례 (쌍따옴표 및 셸 파싱 간섭)
+```bash
+$ echo "<h1>Hello!</h1>"
+zsh: event not found: </h1>
+```
+#### [후] 성공 사례 (홑따옴표 사용으로 셸 해석 방지)
+```bash
+$ echo '<h1>Hello!</h1>'
+<h1>Hello!</h1>
+
+#### 3. 조치
+모든 inline HTML 및 특수문자가 포함된 명령어는 홑따옴표(`'...'`)로 감싸서 실행하도록 수정함.
+
+```
