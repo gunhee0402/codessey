@@ -251,9 +251,7 @@ Accept-Ranges: bytes
 <h1>Hello Codyssey!</h1>
 
 ### 5.3 Web Browser 접속 스크린샷 검증
-* **파일명**: `screenshots/browser_access_20260728_2130.png`
-* **캡처 타임스탬프**: `2026-07-28 21:30:15 KST`
-* **캡처 방법 및 조건**: Google Chrome 브라우저 주소창에 `http://localhost:8080` 입력 후 렌더링된 `<h1>Hello Codyssey!</h1>` 화면 및 개발자 도구 Network 탭(200 OK) 전체 영역을 macOS 캡처 shortcut(`Cmd+Shift+4`)으로 저장.
+<img width="2454" height="1102" alt="Image" src="https://github.com/user-attachments/assets/ac00de90-6f17-4913-93a6-b0d947e57861" />
 
 ---
 
@@ -266,16 +264,18 @@ $ docker run -d -p 8080:80 --name my-web -v $(pwd)/site:/usr/share/nginx/html my
 e8f7a6b5c4d3...
 
 # 초기 응답 확인
+```bash
 $ curl http://localhost:8080
-<h1>Hello Codyssey!</h1>
-
+```
 # 호스트에서 파일 직접 수정
+```bash
 $ echo "<h1>Updated Codyssey Volume!</h1>" > ./site/index.html
-
+```
 # 재시작 없이 실시간 반영 확인
+```bash
 $ curl http://localhost:8080
 <h1>Updated Codyssey Volume!</h1>
-
+```
 ### 6.2 컨테이너 삭제 후 호스트 데이터 보존 검증 (독립성 확인)
 컨테이너를 강제 삭제하더라도 호스트 측 데이터는 완전히 보존됨을 검증하는 로그입니다.
 
